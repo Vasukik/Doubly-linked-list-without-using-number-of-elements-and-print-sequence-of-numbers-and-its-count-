@@ -1,0 +1,76 @@
+import java.util.*;
+
+class Node {
+    Node pre;
+    float data;
+    Node next;
+}
+
+public class Main {
+    static Node head;
+    static String n;
+    static String[] a;
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String arg[]) {
+        String n = sc.nextLine();
+        create(n);
+        display();
+        print();
+    }
+
+    static void create(String n) {
+        String[] a = n.split(" ");
+
+        head = new Node();
+        head.data = Float.parseFloat(a[0]);
+         head.pre = null;
+        head.next = null;
+
+        Node temp = head;
+
+        for (int i = 2; i <= a.length; i++) {
+            Node newNode = new Node();
+            newNode.data = Float.parseFloat(a[i-1]);
+            newNode.next = null;
+            temp.next = newNode;
+            newNode.pre = temp;
+            temp = temp.next;
+        }
+    }
+
+    static void print() {
+    int c = 0;
+    Node temp = head;
+    float v = sc.nextFloat();
+    float u = sc.nextFloat();
+    while (temp != null) {
+        if ( temp.data>= v && temp.data<=u) {
+            c++;
+            System.out.print(temp.data + " ");
+        }
+        temp = temp.next;
+    }
+    System.out.println();
+    System.out.println(c);
+}
+static void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+
+    
+}
+
+OutPut:
+
+1.2 3.4 5.6 7.8 9.0
+1.2 3.4 5.6 7.8 9.0 
+2.3 4.5
+3.4 
+1
